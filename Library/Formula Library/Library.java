@@ -504,6 +504,13 @@ public class Library
         System.out.println("The negative binomial probability distribution is " + negativeBinomialProbabilityDistribution(.4,.6, 3, 10));
         System.out.println("The expected value of the negative binomial probability distribution is " + expectedValueNBPD(3, .2));
         System.out.println("The variance of the negative binomial probability distribution is " + varianceNBPD(3, .2));
+        System.out.println();
+
+        System.out.println("The poisson distribution is " + poissonDistribution(1, 0));
+        System.out.println("The expected value of the poisson distribution is " + expectedValuePD(1));
+        System.out.println("The variance of the poisson distribution is " + variancePD(1));
+        System.out.println();
+
     }
     
 
