@@ -166,6 +166,9 @@ public class Library
        */
       public long factorialLong(int userInput){
         long factorial = userInput;
+        if (userInput == 0){
+            return 1;
+        }
         for (int i = 1 ; i < userInput; i++ ){
             factorial *= i;
         }
@@ -179,6 +182,9 @@ public class Library
        */
       public BigInteger factorialBigInt(int userInput){
         BigInteger factorial = BigInteger.valueOf(userInput);
+        if (userInput == 0){
+            return BigInteger.valueOf(1);
+        }
         for (int i = 1; i < userInput; i++){
             factorial = factorial.multiply(BigInteger.valueOf(i));
         }
@@ -414,7 +420,7 @@ public class Library
          * @return returns poisson distribution as a double
          */
         public double poissonDistribution(double lambda, int x){
-            double poisson = (Math.pow(lambda, x) * Math.pow(Math.E, - lambda)) / factorialLong(x);
+            double poisson = (Math.pow(Math.E, -lambda) * Math.pow(lambda, x)) / (factorialBigInt(x).doubleValue());
             return poisson;
         }
 
@@ -506,7 +512,7 @@ public class Library
         System.out.println("The variance of the negative binomial probability distribution is " + varianceNBPD(3, .2));
         System.out.println();
 
-        System.out.println("The poisson distribution is " + poissonDistribution(1, 0));
+        System.out.println("The poisson distribution is " + poissonDistribution(1, 1));
         System.out.println("The expected value of the poisson distribution is " + expectedValuePD(1));
         System.out.println("The variance of the poisson distribution is " + variancePD(1));
         System.out.println();
