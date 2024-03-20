@@ -407,6 +407,35 @@ public class Library
             return variance;
         }
 
+        /**
+         *  returns poisson distribution
+         * @param lambda number of events per unit of time
+         * @param x number of units
+         * @return returns poisson distribution as a double
+         */
+        public double poissonDistribution(double lambda, int x){
+            double poisson = (Math.pow(lambda, x) * Math.pow(Math.E, - lambda)) / factorialLong(x);
+            return poisson;
+        }
+
+        /**
+         * returns expected value of poisson distribution
+         * @param lambda number of events per unit of time
+         * @return returns expected value of poisson distribution as a double
+         */
+        public double expectedValuePD(double lambda){
+            return lambda;
+        }
+
+        /**
+         * returns variance of poisson distribution
+         * @param lambda number of events per unit of time
+         * @return returns variance of poisson distribution as a double
+         */
+        public double variancePD(double lambda){
+            return lambda;
+        }
+
 
 
         
