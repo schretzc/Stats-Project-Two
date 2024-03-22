@@ -442,11 +442,9 @@ public class Library
             return lambda;
         }
 
-
-
-        
-
-
+        public void chebyshev(double mean, double sDev, double y, double k){
+            
+        }
 
 
     /**
@@ -512,12 +510,13 @@ public class Library
         System.out.println("The variance of the negative binomial probability distribution is " + varianceNBPD(3, .2));
         System.out.println();
 
-        System.out.println("The poisson distribution is " + poissonDistribution(1, 0));
+        System.out.println("The poisson distribution is " + poissonDistribution(2, 4));
         System.out.println("The expected value of the poisson distribution is " + expectedValuePD(1));
         System.out.println("The variance of the poisson distribution is " + variancePD(1));
         System.out.println();
 
-        System.out.println();
+        System.out.println(poissonDistribution(1, 3)+ poissonDistribution(1, 2 )+ poissonDistribution(1, 1)+ poissonDistribution(1, 0));
+        //System.out.println(poissonDistribution(1.5, 0)+ poissonDistribution(1.5, 1));
 
     }
     
