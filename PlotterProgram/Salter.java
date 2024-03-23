@@ -30,13 +30,10 @@ public class Salter {
     finally{
         try{
             reader.close();
-        }
+            }
         catch(Exception e){
             e.printStackTrace();
-        }
-    
-
-    
+            }
         }
     }
 }
