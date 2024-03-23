@@ -7,6 +7,8 @@ public class Salter {
      * This method reads a csv file and prints out the contents
      * I used the following link to learn how to read a csv file as input
      * https://www.youtube.com/watch?v=zKDmzKaAQro
+     * https://www.youtube.com/watch?v=Ag-JPiwp1Oo
+     * 
      * @param file desired file to read from
      */
     public void readCSV(String file){
