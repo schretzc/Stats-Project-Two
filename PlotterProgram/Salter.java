@@ -1,5 +1,13 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+/**
+ * write program that accepts a csv with x and y values
+ * loop through the y values and +/- a random number from it
+ *  the random number comes from a range you can configure
+ *  be sure when you are representing the output,
+ *      choose a significantly larger salt value
+ *      have significant number of data points (no, 10 is not enough) 
+ */
 
 public class Salter {
 
