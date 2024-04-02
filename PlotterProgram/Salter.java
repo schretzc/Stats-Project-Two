@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 /**
  * write program that accepts a csv with x and y values
