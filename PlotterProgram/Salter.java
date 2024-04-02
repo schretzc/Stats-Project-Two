@@ -1,6 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.math.BigDecimal;
+import java.io.FileWriter;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 /**
@@ -76,12 +76,49 @@ public class Salter {
         //rounds the value to 6 decimal places
         //choose 
         //does it for one value in the arraylist
+        //www.baeldung.com/java-generating-random-numbers-in-range
+        public int salt(int y, int min, int max){
+            int salt = (int)(Math.random() * (max - min)) + min;
+            int result = y + salt;
+            return result;
+        }
+
+        //loops through the arraylist y
+        //calls the salt method for each value in the arraylist
+        //stores the new value in arraylist y
+        public void saltValues(int min, int max){
+            for(int i = 0; i < y.size(); i++){
+                y.set(i, salt(y.get(i), min, max));
+            }
+        }
+
+        //store new x and y in another csv file
+        //prints the header
+        public void exportData(){
+            try( FileWriter csvWriter = new FileWriter("SaltedCS.csv")){
+                csvWriter.append(header + "\n");
+                for(int i = 0; i < x.size(); i++){
+                    csvWriter.append(x.get(i) + "," + y.get(i) + "\n");
+                }
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
+        //prints new csv file with x and y values
+
 
         public void printArrays(){
             System.out.println(header);
             for(int i = 0; i < x.size(); i++){
                 System.out.println(x.get(i) + "," + y.get(i));
             }
+        }
+
+        public void run(){
+            assignValue("/Users/chris/Documents/Stockton/Spring 2024/Stats/Stats Project Two/PlotterProgram/CSV/ProgramPlotterCS.csv");
+            saltValues(1, 1000);
+            exportData();
         }
         
 }
