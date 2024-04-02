@@ -77,10 +77,20 @@ public class Salter {
         //choose 
         //does it for one value in the arraylist
         //www.baeldung.com/java-generating-random-numbers-in-range
+
         public int salt(int y, int min, int max){
+            int plusMinus = (int)(Math.random() * 2) + 1;
+
+            if (plusMinus == 1){
             int salt = (int)(Math.random() * (max - min)) + min;
             int result = y + salt;
             return result;
+            }
+            else {
+            int salt = (int)(Math.random() * (max - min)) + min;
+            int result = y - salt;
+            return result;
+            }
         }
 
         //loops through the arraylist y
