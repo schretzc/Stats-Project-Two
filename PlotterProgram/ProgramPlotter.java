@@ -22,7 +22,7 @@ public class ProgramPlotter {
     //collect sample outputs of this program in excel chart form showing several different configs
 
 
-    HashMap<BigDecimal, BigDecimal> data;
+    HashMap<Integer, Integer> data;
 
     /**
      * Constructor
@@ -31,20 +31,18 @@ public class ProgramPlotter {
      * where the key is the x value and the data is the output of the graph
      */
     public ProgramPlotter(){
-        this.data = new HashMap<>();
+        this.data = new HashMap<Integer, Integer>();
     }
 
     /**
      * using y = (x^2)+13 as the fuction
-     * used bigdecimal to control how many decimal places to round to
      * @param x value to input into the function
      * @return returns the result of the function as bigdecimal
      */
-    public BigDecimal function(BigDecimal x){
-        BigDecimal result = x.pow(2).add(new BigDecimal(13));
-
-        result = result.setScale(6, RoundingMode.HALF_EVEN);
-        
+    public int function(int x){
+        //BigDecimal result = x.pow(2).add(new BigDecimal(13));
+        int result = (x*x) + 13;
+     
         return result; 
     } 
     
@@ -54,9 +52,8 @@ public class ProgramPlotter {
      * @param end end point
      * @param increment interval between points
      */
-    public void storeData(BigDecimal start, BigDecimal end, BigDecimal increment){
-        for(BigDecimal i = start; i.compareTo(end) <= 0;i = i.add(increment)){
-            i = i.setScale(3, RoundingMode.HALF_EVEN);
+    public void storeData(int start, int end, int increment){
+        for(int i = start; i <= end; i++){
             data.put(i, function(i));
         }
     }
@@ -73,7 +70,7 @@ public class ProgramPlotter {
     public void exportData(){
        try( FileWriter csvWriter = new FileWriter("ProgramPlotterCS.csv")){
         csvWriter.append("X, (x)^2 + 13\n");
-        for(HashMap.Entry<BigDecimal, BigDecimal> entry : data.entrySet()){
+        for(HashMap.Entry<Integer, Integer> entry : data.entrySet()){
             csvWriter.append(entry.getKey() + "," + entry.getValue() + "\n");
         }
 
@@ -85,7 +82,8 @@ public class ProgramPlotter {
     }
 
     public void run(){
-        storeData(new BigDecimal(-10.0), new BigDecimal(10.0), new BigDecimal(0.1));
+        //storeData(new BigDecimal(-10.0), new BigDecimal(10.0), new BigDecimal(0.1));
+        storeData(1,100,1);
         exportData();
     }
 }
