@@ -11,13 +11,12 @@ import java.util.ArrayList;
  *      have significant number of data points (no, 10 is not enough) 
  */
 
-public class Salter {
-    private ArrayList<Integer> x;
-    private ArrayList<Integer> y;
+public class Smoother {
+    private ArrayList<Double> x;
+    private ArrayList<Double> y;
     private String header;
-    
 
-    public Salter(){
+    public Smoother(){
         this.x = new ArrayList<>();
         this.y = new ArrayList<>();
         this.header = "";
@@ -52,8 +51,8 @@ public class Salter {
             header = reader.readLine();
             while((line = reader.readLine()) != null){
                 String[] data = line.split(",");
-                x.add(Integer.parseInt(data[0]));
-                y.add(Integer.parseInt(data[1]));
+                x.add(Double.parseDouble(data[0]));
+                y.add(Double.parseDouble(data[1]));
             }
         }
         catch(Exception e){
@@ -69,43 +68,32 @@ public class Salter {
             }
         }
 
-        //selects random y value from arraylist y
-        //specifies the range of the random number
-        //adds a random number to the y value
-        //stores the new value in arraylist y
-        //rounds the value to 6 decimal places
-        //choose 
-        //does it for one value in the arraylist
-        //www.baeldung.com/java-generating-random-numbers-in-range
-
-        public int salt(int y, int min, int max){
-            int plusMinus = (int)(Math.random() * 2) + 1;
-
-            if (plusMinus == 1){
-            int salt = (int)(Math.random() * (max - min)) + min;
-            int result = y + salt;
-            return result;
-            }
-            else {
-            int salt = (int)(Math.random() * (max - min)) + min;
-            int result = y - salt;
-            return result;
-            }
-        }
-
-        //loops through the arraylist y
-        //calls the salt method for each value in the arraylist
-        //stores the new value in arraylist y
-        public void saltValues(int min, int max){
+        //for each of the y values, add the average of the windowed points to the arraylist
+        //replace y value with that amount
+        //store the new value in arraylist y
+        //the window is the number of points to the left and right of the point
+        //handle case where there are not enough points to the left or right
+        //if there are not enough points to the left or right, use the points that are available
+        public void smoother(int windowValue){
+            double sum = 0;
+            double average = 0;
+            double roundedAverage = 0;
             for(int i = 0; i < y.size(); i++){
-                y.set(i, salt(y.get(i), min, max));
-            }
+                for(int j = i - windowValue; j <= i + windowValue; j++){
+                   if(j >= 0 && j < y.size()){
+                    sum+= y.get(j);
+                   }
+                   average = sum / (2 * windowValue + 1);
+                   roundedAverage = Math.round(average);
+                }  
+                y.set(i, roundedAverage);
+                sum = 0;
+                average = 0;   
+                } 
         }
 
-        //store new x and y in another csv file
-        //prints the header
         public void exportData(){
-            try( FileWriter csvWriter = new FileWriter("SaltedCS.csv")){
+            try( FileWriter csvWriter = new FileWriter("SmoothieCS.csv")){
                 csvWriter.append(header + "\n");
                 for(int i = 0; i < x.size(); i++){
                     csvWriter.append(x.get(i) + "," + y.get(i) + "\n");
@@ -126,9 +114,10 @@ public class Salter {
         }
 
         public void run(){
-            assignValue("/Users/chris/Documents/Stockton/Spring 2024/Stats/Stats Project Two/PlotterProgram/CSV/ProgramPlotterCS.csv");
-            saltValues(-150000, 150000);
+            assignValue("/Users/chris/Documents/Stockton/Spring 2024/Stats/Stats Project Two/PlotterProgram/CSV/SaltedCS.csv");
+            smoother(100);
             exportData();
         }
+
         
 }

@@ -83,7 +83,7 @@ public class ProgramPlotter {
 
     public void run(){
         //storeData(new BigDecimal(-10.0), new BigDecimal(10.0), new BigDecimal(0.1));
-        storeData(1,100,1);
+        storeData(-1000,1000,1);
         exportData();
     }
 }
