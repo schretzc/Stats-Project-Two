@@ -7,7 +7,7 @@ public class TestProgramPlotter {
       //Salter test = new Salter();
       //test.run();
 
-        Smoother test2 = new Smoother();
-        test2.run();
+      Smoother test2 = new Smoother();
+      test2.run();
     }
 }

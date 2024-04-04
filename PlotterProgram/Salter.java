@@ -127,7 +127,7 @@ public class Salter {
 
         public void run(){
             assignValue("/Users/chris/Documents/Stockton/Spring 2024/Stats/Stats Project Two/PlotterProgram/CSV/ProgramPlotterCS.csv");
-            saltValues(-150000, 150000);
+            saltValues(-100000, 100000);
             exportData();
         }
         
