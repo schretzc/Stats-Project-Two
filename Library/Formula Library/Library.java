@@ -571,11 +571,11 @@ public class Library
         System.out.println();
 
         System.out.println("The uniform distribution is " + uniformDistribution(0, 40));
-        System.out.println("expected result 15/40");
+        System.out.println("expected result .375");
         System.out.println("The expected value of the uniform distribution is " + expectedValueUD(0, 40));
         System.out.println("expected result 20");
         System.out.println("The variance of the uniform distribution is " + varianceUD(0, 40));
-        System.out.println("expected result 400/3");
+        System.out.println("expected result 133.333");
 
 
     }
