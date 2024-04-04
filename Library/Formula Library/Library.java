@@ -576,8 +576,6 @@ public class Library
         System.out.println("expected result 20");
         System.out.println("The variance of the uniform distribution is " + varianceUD(0, 40));
         System.out.println("expected result 133.333");
-
-
     }
     
 
