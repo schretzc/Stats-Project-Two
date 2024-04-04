@@ -446,6 +446,20 @@ public class Library
             
         }
 
+        public double uniformDistribution(double a, double b){
+            double uniformDistribution = (1)/ (b-a);
+            return uniformDistribution;
+        }
+
+        public double expectedValueUD(double a, double b){
+            double expectedValue = (a + b)/(2);
+            return expectedValue;
+        }
+        public double varianceUD(double a, double b){
+            double variance = Math.pow(b-a, 2)/(12);
+            return variance;
+        }
+
 
     /**
      * test method for all of the methods in the class
@@ -459,64 +473,110 @@ public class Library
         double mean = findMean(sampleNumbersOdd);
         //always have output "tell a story"
         System.out.println("The Mean is " + mean);
+        System.out.println("expected result 5");
+        System.out.println();
 
         double medianEven = findMedian(sampleNumbersEven);
         double medianOdd = findMedian(sampleNumbersOdd);
         System.out.println("The Median with even input is " + medianEven);
+        System.out.println("expected result 5.5");
         System.out.println("The Median with odd input is " + medianOdd);
+        System.out.println("expected result 5.0");
+        System.out.println();
 
         double noMode = findMode(sampleNumbersNoMode);
         System.out.println("The Mode is " + noMode);
+        System.out.println("expected result 4.0");
+        System.out.println();
         double mode = findMode(sampleNumbersMode);
         System.out.println("The Mode is " + mode);
+        System.out.println("expected result 3.0");
+        System.out.println();
 
         
         double standardDeviationPop = findStandardDeviation(sampleNumbersEven, "population");
         System.out.println("The standard deviation of the Population is " + standardDeviationPop);
+        System.out.println("expected result 2.8722");
+        System.out.println();
 
         //double standardDeviationSamp = findStandardDeviationSample(sampleNumbersEven);
         double standardDeviationSamp = findStandardDeviation(sampleNumbersEven, "sample");
         System.out.println("The standard deviation of the Sample is " + standardDeviationSamp);
+        System.out.println("expected result 3.027");
+        System.out.println();
 
         System.out.println("the Long factorial is: " + factorialLong(9));
+        System.out.println("expected result 362880");
         System.out.println("the BigInt factorial is: " + factorialBigInt(9));
+        System.out.println("expected result 362880");
+        System.out.println();
 
         System.out.println("The number of permutations is " + findPermutations(10,3));
+        System.out.println("expected result 720");
         System.out.println("The number of combinations is " + findCombinations(10, 3));
+        System.out.println("expected result 120");
+        System.out.println();
 
         System.out.println("Is the problem independent? " + isIndependent(0.5, 0.5, 0.5, 0.5, 0.25));
+        System.out.println("expected result true");
         System.out.println("Is the problem dependent? " + isDependent(0.5, 0.5, 0.5, 0.5, 0.25));
+        System.out.println("expected result false");
         System.out.println();
 
         System.out.println("The conditional probability is " + conditionalProbability(2, 4));
+        System.out.println("expected result .5");
+        System.out.println();
 
         System.out.println("The binomial probability distribution is " + binomialProbabilityDistribution(0.8, 0.2, 10, 7));
+        System.out.println("expected result .2013");
         System.out.println("The expected value of binomial probability distribution is " + expectedValuesBPD(3, 0.5));
+        System.out.println("expected result 1.5");
         System.out.println("The variance of binomial probability distribution is " + varianceBPD(1.5, 2.5));
+        System.out.println("expected result 1");
         System.out.println();
 
         System.out.println("The geometric probability distribution is " + geometricProbabilityDistribution(0.8, 0.2, 5));
+        System.out.println("expected result .0819...");
         System.out.println("The expected value of geometric probability distribution is " + expectedValueGPD(0.2));
+        System.out.println("expected result 5");
         System.out.println("The variance of geometric probability distribution is " + varianceGPD(0.2));
+        System.out.println("expected result 19.999...");
         System.out.println();
 
         System.out.println("The hypergeometric probability distribution is " + hypergeometricProbabilityDistribution(196, 10, 101, 7));
+        System.out.println("expected result .1303...");
         System.out.println("The expected value of hypergeometric probability distribution is " + expectedValueHPD(10, 196, 101));
+        System.out.println("expected result 5.153...");
         System.out.println("The variance of hypergeometric probability distribution is " + varianceHPD(10, 196, 101));
+        System.out.println("expected result 2.382...");
         System.out.println();
 
         System.out.println("The negative binomial probability distribution is " + negativeBinomialProbabilityDistribution(.4,.6, 3, 10));
+        System.out.println("expected result .0644...");
         System.out.println("The expected value of the negative binomial probability distribution is " + expectedValueNBPD(3, .2));
+        System.out.println("expected result 15");
         System.out.println("The variance of the negative binomial probability distribution is " + varianceNBPD(3, .2));
+        System.out.println("expected result 60");
         System.out.println();
 
         System.out.println("The poisson distribution is " + poissonDistribution(2, 4));
+        System.out.println("expected result .0902........");
         System.out.println("The expected value of the poisson distribution is " + expectedValuePD(1));
+        System.out.println("expected result 1");
         System.out.println("The variance of the poisson distribution is " + variancePD(1));
+        System.out.println("expected result 1");
         System.out.println();
 
-        System.out.println(poissonDistribution(1, 3)+ poissonDistribution(1, 2 )+ poissonDistribution(1, 1)+ poissonDistribution(1, 0));
-        //System.out.println(poissonDistribution(1.5, 0)+ poissonDistribution(1.5, 1));
+        System.out.println("The Cheby");
+        System.out.println();
+
+        System.out.println("The uniform distribution is " + uniformDistribution(0, 40));
+        System.out.println("expected result 15/40");
+        System.out.println("The expected value of the uniform distribution is " + expectedValueUD(0, 40));
+        System.out.println("expected result 20");
+        System.out.println("The variance of the uniform distribution is " + varianceUD(0, 40));
+        System.out.println("expected result 400/3");
+
 
     }
     
