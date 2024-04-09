@@ -75,20 +75,18 @@ public class Smoother {
         //handle case where there are not enough points to the left or right
         //if there are not enough points to the left or right, use the points that are available
         public void smoother(int windowValue){
-            double sum = 0;
-            double average = 0;
-            double roundedAverage = 0;
-            for(int i = 0; i < y.size(); i++){
+            for(int i = 0; i < y.size(); i++){ 
+                int count = 0;
+                double sum = 0;
                 for(int j = i - windowValue; j <= i + windowValue; j++){
                    if(j >= 0 && j < y.size()){
                     sum+= y.get(j);
+                    count++;
                    }
-                   average = sum / (2 * windowValue + 1);
-                   roundedAverage = Math.round(average);
-                }  
-                y.set(i, roundedAverage);
-                sum = 0;
-                average = 0;   
+                }
+                double average = sum / count;
+                double roundedAverage = Math.round(average);
+                y.set(i, roundedAverage); 
                 } 
         }
 
@@ -115,7 +113,7 @@ public class Smoother {
 
         public void run(){
             assignValue("/Users/chris/Documents/Stockton/Spring 2024/Stats/Stats Project Two/PlotterProgram/CSV/SaltedCS.csv");
-            smoother(7000);
+            smoother(20);
             exportData();
         }
 
