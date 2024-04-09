@@ -10,25 +10,21 @@ import java.util.ArrayList;
  *      choose a significantly larger salt value
  *      have significant number of data points (no, 10 is not enough) 
  */
-
 public class Salter {
     private ArrayList<Integer> x;
     private ArrayList<Integer> y;
     private String header;
     
 
+    /**
+     * Constructor
+     */
     public Salter(){
         this.x = new ArrayList<>();
         this.y = new ArrayList<>();
         this.header = "";
     }
 
-//takes csv file as input
-//reads the file and assigns the values to x and y
-//the first value is the x value and the second value is the y value
-//the arraylist x will hold the x values
-//the arraylist y will hold the y values
-//assigns the values to double in arraylist
     /**
      * This method reads a csv file and prints out the contents
      * I used the following link to learn how to read a csv file as input
@@ -69,15 +65,17 @@ public class Salter {
             }
         }
 
-        //selects random y value from arraylist y
-        //specifies the range of the random number
-        //adds a random number to the y value
-        //stores the new value in arraylist y
-        //rounds the value to 6 decimal places
-        //choose 
-        //does it for one value in the arraylist
-        //www.baeldung.com/java-generating-random-numbers-in-range
+       
 
+        /**
+         * This method salts/randomizes the y value
+         * www.baeldung.com/java-generating-random-numbers-in-range
+         * specifies the range of the random number
+         * @param y y value
+         * @param min minimum value for the random number
+         * @param max maximum value for the random number
+         * @return returns the new y value
+         */
         public int salt(int y, int min, int max){
             int plusMinus = (int)(Math.random() * 2) + 1;
 
@@ -93,17 +91,26 @@ public class Salter {
             }
         }
 
-        //loops through the arraylist y
-        //calls the salt method for each value in the arraylist
-        //stores the new value in arraylist y
+        /**
+         * This method salt/randomizes the y values in the arraylist
+         * @param min minimum value for the random number
+         * @param max maximum value for the random number
+         */
         public void saltValues(int min, int max){
             for(int i = 0; i < y.size(); i++){
                 y.set(i, salt(y.get(i), min, max));
             }
         }
 
-        //store new x and y in another csv file
-        //prints the header
+        /**
+         * This method exports the data to a csv file
+        * The data is stored in a hashmap
+        * To export the data, I used the guide from the link below
+        * https://www.baeldung.com/java-write-hashmap-csv
+        * For the loop to iterate through the hashmap, I used the following link
+        * https://www.geeksforgeeks.org/write-hashmap-to-a-text-file-in-java/
+        * This was perfect since i was already using a hashmap to store the data
+        */
         public void exportData(){
             try( FileWriter csvWriter = new FileWriter("SaltedCS.csv")){
                 csvWriter.append(header + "\n");
@@ -115,16 +122,18 @@ public class Salter {
             }
         }
 
-        //prints new csv file with x and y values
-
-
+        /**
+         * This method prints the x and y values to the console for debugging purposes
+         */
         public void printArrays(){
             System.out.println(header);
             for(int i = 0; i < x.size(); i++){
                 System.out.println(x.get(i) + "," + y.get(i));
             }
         }
-
+        /**
+         * this method runs the program
+         */
         public void run(){
             assignValue("/Users/chris/Documents/Stockton/Spring 2024/Stats/Stats Project Two/PlotterProgram/CSV/ProgramPlotterCS.csv");
             saltValues(-100000, 100000);

@@ -10,24 +10,20 @@ import java.util.ArrayList;
  *      choose a significantly larger salt value
  *      have significant number of data points (no, 10 is not enough) 
  */
-
 public class Smoother {
     private ArrayList<Double> x;
     private ArrayList<Double> y;
     private String header;
 
+    /**
+     * Constructor
+     */
     public Smoother(){
         this.x = new ArrayList<>();
         this.y = new ArrayList<>();
         this.header = "";
     }
 
-//takes csv file as input
-//reads the file and assigns the values to x and y
-//the first value is the x value and the second value is the y value
-//the arraylist x will hold the x values
-//the arraylist y will hold the y values
-//assigns the values to double in arraylist
     /**
      * This method reads a csv file and prints out the contents
      * I used the following link to learn how to read a csv file as input
@@ -68,12 +64,10 @@ public class Smoother {
             }
         }
 
-        //for each of the y values, add the average of the windowed points to the arraylist
-        //replace y value with that amount
-        //store the new value in arraylist y
-        //the window is the number of points to the left and right of the point
-        //handle case where there are not enough points to the left or right
-        //if there are not enough points to the left or right, use the points that are available
+        /**
+         * This method takes the average of the windowed points and replaces the y value with that amount
+         * @param windowValue number of points to left and right of the point
+         */
         public void smoother(int windowValue){
             for(int i = 0; i < y.size(); i++){ 
                 int count = 0;
@@ -90,6 +84,15 @@ public class Smoother {
                 } 
         }
 
+        /**
+        * This method exports the data to a csv file
+        * The data is stored in a hashmap
+        * To export the data, I used the guide from the link below
+        * https://www.baeldung.com/java-write-hashmap-csv
+        * For the loop to iterate through the hashmap, I used the following link
+        * https://www.geeksforgeeks.org/write-hashmap-to-a-text-file-in-java/
+        * This was perfect since i was already using a hashmap to store the data
+        */
         public void exportData(){
             try( FileWriter csvWriter = new FileWriter("SmoothieCS.csv")){
                 csvWriter.append(header + "\n");
@@ -101,9 +104,9 @@ public class Smoother {
             }
         }
 
-        //prints new csv file with x and y values
-
-
+        /**
+         * This method prints the x and y values to the console for debugging purposes
+         */
         public void printArrays(){
             System.out.println(header);
             for(int i = 0; i < x.size(); i++){
@@ -111,9 +114,12 @@ public class Smoother {
             }
         }
 
+        /**
+         * This method runs the program
+         */
         public void run(){
             assignValue("/Users/chris/Documents/Stockton/Spring 2024/Stats/Stats Project Two/PlotterProgram/CSV/SaltedCS.csv");
-            smoother(20);
+            smoother(60);
             exportData();
         }
 
