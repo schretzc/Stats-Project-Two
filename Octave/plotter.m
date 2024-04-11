@@ -10,6 +10,10 @@
 %for for loops
 %https://docs.octave.org/latest/Cell-Arrays.html
 %for array work
+%https://octave.sourceforge.io/octave/function/max.html
+%for max
+%https://octave.sourceforge.io/octave/function/min.html
+%for min
 lowerBound = -100
 upperBound = 100
 x = linspace(lowerBound,upperBound);
@@ -29,7 +33,26 @@ function y=  salty(y)
 end
 
 randomY = salty(randomY);
-plot(x, randomY);
+%plot(x, randomY);
+
+smoothY = randomY;
+function smoothY = smoothie(y)
+  window = 10;
+  for i = 1:length(y)
+    sum = 0;
+    count = 0;
+    for j = max(1, i - window):min(length(y), i + window)
+          sum = sum + y(j);
+          count = count + 1;
+    endfor
+    smoothY(i) = sum/count;
+  endfor
+endfunction
+
+smoothY = smoothie(randomY);
+plot(x,smoothY);
+
+
 
 
 
