@@ -2,6 +2,7 @@
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
         "c:\\Users\\Chris\\Documents\\commons-math-4.0-beta1\\commons-math4-core-4.0-beta1.jar",
-        "c:\\Users\\Chris\\Documents\\commons-math-4.0-beta1\\commons-math4-legacy-4.0-beta1.jar"
+        "c:\\Users\\Chris\\Documents\\commons-math-4.0-beta1\\commons-math4-legacy-4.0-beta1.jar",
+        "c:\\Users\\Chris\\Documents\\jfreechart-1.5.0.jar"
     ]
 }
