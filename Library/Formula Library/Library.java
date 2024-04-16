@@ -442,8 +442,15 @@ public class Library
             return lambda;
         }
 
-        public void chebyshev(double mean, double sDev, double y, double k){
-            
+        /**
+         * takes in a k value and returns the chebyshev value
+         * @param k K value
+         * @return returns chebyshev as a double
+         */
+        public double chebyshev(double k){
+            double kSquared = Math.pow(k, 2);
+            double chebyshev = 1 - (1/kSquared);
+            return chebyshev;
         }
 
         public double uniformDistribution(double a, double b){
@@ -459,6 +466,13 @@ public class Library
             double variance = Math.pow(b-a, 2)/(12);
             return variance;
         }
+
+       public double jointProbabilityMassFunction(int x, int y, int groupA, int groupB, int remaining, int amtWanted, int total){
+           double jpmf = findCombinations(groupA,x).doubleValue() * findCombinations(groupB,y).doubleValue() * findCombinations(remaining,amtWanted - x - y).doubleValue() / findCombinations(total, amtWanted).doubleValue();
+           return jpmf;
+       }
+
+
 
 
     /**
@@ -576,6 +590,18 @@ public class Library
         System.out.println("expected result 20");
         System.out.println("The variance of the uniform distribution is " + varianceUD(0, 40));
         System.out.println("expected result 133.333");
+        System.out.println();
+
+        System.out.println("The Chebyshev value is " + chebyshev(2));
+        System.out.println("expected result .75");
+        System.out.println();
+
+        System.out.println("The joint probability mass function is " + jointProbabilityMassFunction(1, 0, 2, 2, 2, 2, 9));
+        System.out.println("expected result .25");
+        System.out.println();
+
+
+
     }
     
 
