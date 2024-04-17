@@ -17,8 +17,8 @@ public class JPlot {
 
         PlotSaltSmooth plotter = new PlotSaltSmooth();
         ArrayList<Double> data = plotter.plotData(-100, 100, 1);
-        ArrayList<Double> salted = plotter.saltValues(-1000,1000);
-        ArrayList<Double> smoothed = plotter.smoother(4);
+        ArrayList<Double> salted = plotter.saltValues(-2500,2500);
+        ArrayList<Double> smoothed = plotter.smoother(15);
         ArrayList<Integer> xValues = plotter.getX();
 
          // Create XYSeries for original data
