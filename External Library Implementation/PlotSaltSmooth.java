@@ -130,6 +130,12 @@ public class PlotSaltSmooth {
         for (int i = 0; i < data.size(); i++){
             System.out.println("X: " + xValues.get(i) + " Y: " + data.get(i));
         }
+        for (int i = 0; i < salted.size(); i++){
+            System.out.println("X: " + xValues.get(i) + " Y: " + salted.get(i));
+        }
+        for (int i = 0; i < smoothed.size(); i++){
+            System.out.println("X: " + xValues.get(i) + " Y: " + smoothed.get(i));
+        }
 
     }
 
