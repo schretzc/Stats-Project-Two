@@ -2,19 +2,19 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
-public class CSVReader{
+public class RSI{
 
-        private ArrayList<Integer> x;
-        private ArrayList<Integer> y;
+        private ArrayList<Integer> price;
+        private ArrayList<String> date;
         private String header;
         
     
         /**
          * Constructor
          */
-        public CSVReader(){
-            this.x = new ArrayList<>();
-            this.y = new ArrayList<>();
+        public RSI(){
+            this.price = new ArrayList<>();
+            this.date = new ArrayList<>();
             this.header = "";
         }
 
@@ -27,8 +27,8 @@ public class CSVReader{
                 header = reader.readLine();
                 while((line = reader.readLine()) != null){
                     String[] data = line.split(",");
-                    x.add(Integer.parseInt(data[0]));
-                    y.add(Integer.parseInt(data[1]));
+                    date.add((data[0]));
+                    price.add(Integer.parseInt(data[1]));
                 }
             }
             catch(Exception e){
@@ -44,11 +44,13 @@ public class CSVReader{
                 }
             }
 
+
+
             public void exportData(){
-                try( FileWriter csvWriter = new FileWriter("SaltedCS.csv")){
+                try( FileWriter csvWriter = new FileWriter("RSI.csv")){
                     csvWriter.append(header + "\n");
-                    for(int i = 0; i < x.size(); i++){
-                        csvWriter.append(x.get(i) + "," + y.get(i) + "\n");
+                    for(int i = 0; i < date.size(); i++){
+                        csvWriter.append(date.get(i) + "," + price.get(i) + "\n");
                     }
                 } catch (Exception e){
                     e.printStackTrace();
