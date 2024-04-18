@@ -28,7 +28,7 @@ public class RSI{
                 while((line = reader.readLine()) != null){
                     String[] data = line.split(",");
                     date.add((data[0]));
-                    price.add(Integer.parseInt(data[1]));
+                    price.add(Integer.parseInt(data[4]));
                 }
             }
             catch(Exception e){
@@ -42,6 +42,10 @@ public class RSI{
                     e.printStackTrace();
                     }
                 }
+            }
+
+            public void calculateRSI(){
+                
             }
 
 
