@@ -6,6 +6,9 @@
         "c:\\Users\\Chris\\Documents\\jfreechart-1.5.0.jar",
         "External Library Implementation/lib/commons-math4-core-4.0-beta1.jar",
         "External Library Implementation/lib/commons-math4-legacy-4.0-beta1.jar",
-        "External Library Implementation/lib/jfreechart-1.5.0.jar"
+        "External Library Implementation/lib/jfreechart-1.5.0.jar",
+        "PlotSaltSmooth/External Library Implementation/lib/jfreechart-1.5.0.jar",
+        "PlotSaltSmooth/External Library Implementation/lib/commons-math4-legacy-4.0-beta1.jar",
+        "PlotSaltSmooth/External Library Implementation/lib/commons-math4-core-4.0-beta1.jar"
     ]
 }
