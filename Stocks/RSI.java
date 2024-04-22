@@ -11,7 +11,6 @@ public class RSI{
         private ArrayList<String> date;
         private ArrayList<Double> rsi;
         private ArrayList<Double> movAvg;
-        private String header;
         
     
         /**
@@ -22,7 +21,6 @@ public class RSI{
             this.date = new ArrayList<>();
             this.rsi = new ArrayList<>();
             this.movAvg = new ArrayList<>();
-            this.header = "";
         }
 
         public void assignValue(String file){
@@ -31,7 +29,6 @@ public class RSI{
     
             try{
                 reader = new BufferedReader (new FileReader(file));
-                header = reader.readLine();
                 while((line = reader.readLine()) != null){
                     String[] data = line.split(",");
                     date.add((data[0]));
