@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.FileWriter;
+//import java.io.FileWriter;
 
 public class StockBot {
     ArrayList<Double> price;
@@ -51,7 +51,6 @@ public class StockBot {
                 reader = new BufferedReader (new FileReader(file));
                 while((line = reader.readLine()) != null){
                     String[] data = line.split(",");
-                    date.add((data[0]));
                     rsi.add(Double.parseDouble(data[1]));
                     movAvg.add(Double.parseDouble(data[2]));
                 }
@@ -67,6 +66,10 @@ public class StockBot {
                     e.printStackTrace();
                     }
                 }
+            }
+
+            public void tradeEvaluator(){
+                
             }
 
             public void run(){
