@@ -467,12 +467,6 @@ public class Library
             return variance;
         }
 
-       public double jointProbabilityMassFunction(int x, int y, int groupA, int groupB, int remaining, int amtWanted, int total){
-           double jpmf = findCombinations(groupA,x).doubleValue() * findCombinations(groupB,y).doubleValue() * findCombinations(remaining,amtWanted - x - y).doubleValue() / findCombinations(total, amtWanted).doubleValue();
-           return jpmf;
-       }
-
-
 
 
     /**
@@ -594,10 +588,6 @@ public class Library
 
         System.out.println("The Chebyshev value is " + chebyshev(2));
         System.out.println("expected result .75");
-        System.out.println();
-
-        System.out.println("The joint probability mass function is " + jointProbabilityMassFunction(1, 0, 2, 2, 2, 2, 9));
-        System.out.println("expected result .25");
         System.out.println();
 
 
