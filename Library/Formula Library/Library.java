@@ -454,7 +454,9 @@ public class Library
         }
 
         public double uniformDistribution(double a, double b){
-            double uniformDistribution = (1)/ (b-a);
+            double bmina = b-a;
+            double uniformDistribution = 1 / bmina;
+
             return uniformDistribution;
         }
 
@@ -575,19 +577,16 @@ public class Library
         System.out.println("expected result 1");
         System.out.println();
 
-        System.out.println("The Cheby");
+        System.out.println("The Chebyshev value is " + chebyshev(2.085));
+        System.out.println("expected result .77");
         System.out.println();
 
-        System.out.println("The uniform distribution is " + uniformDistribution(0, 40));
-        System.out.println("expected result .375");
+        System.out.println("The uniform distribution is " + uniformDistribution(0,25));
+        System.out.println("expected result .04");
         System.out.println("The expected value of the uniform distribution is " + expectedValueUD(0, 40));
         System.out.println("expected result 20");
         System.out.println("The variance of the uniform distribution is " + varianceUD(0, 40));
         System.out.println("expected result 133.333");
-        System.out.println();
-
-        System.out.println("The Chebyshev value is " + chebyshev(2));
-        System.out.println("expected result .75");
         System.out.println();
 
 
