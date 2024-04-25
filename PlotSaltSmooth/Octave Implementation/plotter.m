@@ -37,7 +37,7 @@ randomY = salty(randomY);
 
 smoothY = randomY;
 function smoothY = smoothie(y)
-  window = 10;
+  window = 13;
   for i = 1:length(y)
     sum = 0;
     count = 0;
