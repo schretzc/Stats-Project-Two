@@ -20,12 +20,7 @@ public class PlotSaltSmooth {
     ArrayList<Double> saltedData;
     ArrayList<Double> smoothedData;
     ArrayList<Integer> xValues;
-    /**
-     * Constructor
-     * Initialize the hashmap
-     * Use hashmap for the purpose of a graph (key, value)
-     * where the key is the x value and the data is the output of the graph
-     */
+    
     public PlotSaltSmooth(){
         data = new ArrayList<Double>();
         saltedData = new ArrayList<Double>();
