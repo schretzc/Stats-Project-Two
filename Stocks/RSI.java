@@ -26,9 +26,9 @@ public class RSI{
         public void assignValue(String file){
             BufferedReader reader = null;
             String line = "";
-    
             try{
                 reader = new BufferedReader (new FileReader(file));
+                String header = reader.readLine();
                 while((line = reader.readLine()) != null){
                     String[] data = line.split(",");
                     date.add((data[0]));
