@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 //import java.io.FileWriter;
 
 public class StockBot {
@@ -10,20 +11,16 @@ public class StockBot {
     ArrayList<Double> movAvg;
     ArrayList<Double> hodlWorth;
     ArrayList<Double> fidelityWorth;
-    double balance;
-    double stocks;
-    double netWorth;
+    ArrayList<Double> funWorth;
 
     public StockBot() {
         this.price = new ArrayList<>();
         this.date = new ArrayList<>();
         this.rsi = new ArrayList<>();
         this.movAvg = new ArrayList<>();
-        this.balance = 100000;
-        this.stocks = 0;
-        this.netWorth = 100000;
         this.hodlWorth = new ArrayList<>();
         this.fidelityWorth = new ArrayList<>();
+        this.funWorth = new ArrayList<>();
     }
 
     public void assignPrice(String file){
@@ -91,6 +88,9 @@ public class StockBot {
             //uses moving average and rsi to make decisions
             //when buying, buy 70% when selling, sell 40%
         public double hodl() {
+            double balance = 100000;
+            double stocks= 0;
+            double netWorth = 0;
             for (int i = 0; i < date.size(); i++) {
                 System.out.println("date: " + date.get(i) + ", balance: " + balance + ", stocks: " + stocks + ", Net worth: " + netWorth);
                 
@@ -131,6 +131,9 @@ public class StockBot {
             //uses moving average and rsi to make decisions
             //when buying, buy 70% when selling, sell 40%
             public double fidelityAlgorithm() {
+                double balance = 100000;
+                double stocks= 0;
+                double netWorth = 0;
                 for (int i = 0; i < date.size(); i++) {
                    // System.out.println("date: " + date.get(i) + ", balance: " + balance + ", stocks: " + stocks + ", Net worth: " + netWorth);
                     
@@ -176,23 +179,38 @@ public class StockBot {
                     System.out.println(fidelityWorth.get(i));
                 }
             }
+
+            public void exportFidelityData(){
+                try( FileWriter csvWriter = new FileWriter("FidelityNFLX.csv")){
+                    csvWriter.append("Date,Net Worth" + "\n");
+                    for(int i = 0; i < date.size(); i++){
+                        csvWriter.append(date.get(i) + "," + fidelityWorth.get(i)+ "\n");
+                    }
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+
+            public void exportHodlData(){
+                try( FileWriter csvWriter = new FileWriter("HodlNFLX.csv")){
+                    csvWriter.append("Date,Net Worth" + "\n");
+                    for(int i = 0; i < date.size(); i++){
+                        csvWriter.append(date.get(i) + "," + hodlWorth.get(i)+ "\n");
+                    }
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+
+
                 
 
             public void run(){
-                StockBot hodl = new StockBot();
-                StockBot fid = new StockBot();
-                fid.assignPrice("/Users/chris/Documents/Stockton/Spring 2024/Stats/Stats Project Two/Stocks/CSVs/NFLX.csv");
-                fid.assignRSI("/Users/chris/Documents/Stockton/Spring 2024/Stats/Stats Project Two/Stocks/CSVs/NFLXRSI.csv");
-                hodl.assignPrice("/Users/chris/Documents/Stockton/Spring 2024/Stats/Stats Project Two/Stocks/CSVs/NFLX.csv");
-                hodl.assignRSI("/Users/chris/Documents/Stockton/Spring 2024/Stats/Stats Project Two/Stocks/CSVs/NFLXRSI.csv");    
-                System.out.println("HODL net worth"+hodl.hodl());
-              // System.out.println("FIDELITY net worth"+ fid.fidelityAlgorithm());
-               //fid.printWeeklyWorth();
-                
-                
-            
+                 assignPrice("/Users/chris/Documents/Stockton/Spring 2024/Stats/Stats Project Two/Stocks/CSVs/NFLX.csv");
+                 assignRSI("/Users/chris/Documents/Stockton/Spring 2024/Stats/Stats Project Two/Stocks/CSVs/NFLXRSI.csv");
+                 System.out.println(fidelityAlgorithm());
+                 System.out.println(hodl());
+                 exportHodlData();
+                 exportFidelityData();
             }
-            
-                
-            
 }
