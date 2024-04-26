@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
-//import java.io.FileWriter;
+
 
 public class StockBot {
     ArrayList<Double> price;
@@ -88,7 +88,7 @@ public class StockBot {
             //uses moving average and rsi to make decisions
             //when buying, buy 70% when selling, sell 40%
         public double hodl() {
-            double balance = 100000;
+            double balance = 10000;
             double stocks= 0;
             double netWorth = 0;
             for (int i = 0; i < date.size(); i++) {
@@ -103,11 +103,14 @@ public class StockBot {
                 
                 if (i > 52) {
                     if (rsi.get(i) > 70) { //price.get(i) > movAvg.get(i)
-                        double amount = (balance / price.get(i)) * 0.2;
-                        balance += amount;
-                        stocks -= amount;
-                        System.out.println("Sold " + amount + " stocks at price " + price.get(i));
-                    } else if (rsi.get(i) < 40) { //&& price.get(i) < movAvg.get(i)
+                        double sellAmount = stocks * 0.3;
+                        if (sellAmount > stocks){
+                            sellAmount = stocks;
+                        }
+                        balance += sellAmount * price.get(i);
+                        stocks -= sellAmount;
+                        System.out.println("Sold " + sellAmount + " stocks at price " + price.get(i));
+                    } else if (rsi.get(i) < 30) { //&& price.get(i) < movAvg.get(i)
                         double amount = (balance / price.get(i)) * 0.5;
                         balance -= amount;
                         stocks += amount;
@@ -117,7 +120,7 @@ public class StockBot {
                     }
                 }
                 
-                netWorth = balance + (stocks * price.get(i));
+                netWorth = Math.round(balance + (stocks * price.get(i)));
                 hodlWorth.add(netWorth); 
             }
             return netWorth;
@@ -131,26 +134,19 @@ public class StockBot {
             //uses moving average and rsi to make decisions
             //when buying, buy 70% when selling, sell 40%
             public double fidelityAlgorithm() {
-                double balance = 100000;
+                double balance = 10000;
                 double stocks= 0;
                 double netWorth = 0;
                 for (int i = 0; i < date.size(); i++) {
-                   // System.out.println("date: " + date.get(i) + ", balance: " + balance + ", stocks: " + stocks + ", Net worth: " + netWorth);
-                    
-                    if (i == 0) {
-                        double amount = (balance / price.get(i)) * 0.5;
-                        balance -= amount;
-                        stocks += amount;
-                        //System.out.println("initially purchase: bought " + amount + " stocks at price " + price.get(i));
-                    }
-                    
-                    
-                        if (rsi.get(i) > 70) { //price.get(i) > movAvg.get(i)
-                            double amount = (balance / price.get(i)) * 0.2;
-                            balance += amount;
-                            stocks -= amount;
+                    if (rsi.get(i) > 70) { //price.get(i) > movAvg.get(i)
+                            double sellAmount = stocks * 0.3;
+                            if (sellAmount > stocks){
+                                sellAmount = stocks;
+                            }
+                            balance += sellAmount * price.get(i);
+                            stocks -= sellAmount;
                           //  System.out.println("sold " + amount + " stocks at price " + price.get(i));
-                        } else if (rsi.get(i) < 40) { //&& price.get(i) < movAvg.get(i)
+                        } else if (rsi.get(i) < 30) { //&& price.get(i) < movAvg.get(i)
                             double amount = (balance / price.get(i)) * 0.5;
                             balance -= amount;
                             stocks += amount;
@@ -158,12 +154,39 @@ public class StockBot {
                         } else {
                            // System.out.println("didnt do shit");
                         }
-                    netWorth = balance + (stocks * price.get(i));
+                    netWorth = Math.round(balance + (stocks * price.get(i)));
                     fidelityWorth.add(netWorth); 
                 }
                 return netWorth;
             }
-            
+
+
+            public double customAlgorithm() {
+                double balance = 10000;
+                double stocks= 0;
+                double netWorth = 0;
+                for (int i = 0; i < date.size(); i++) {
+                    if (rsi.get(i) > 70) { //price.get(i) > movAvg.get(i)
+                            double sellAmount = stocks * 0.3;
+                            if (sellAmount > stocks){
+                                sellAmount = stocks;
+                            }
+                            balance += sellAmount * price.get(i);
+                            stocks -= sellAmount;
+                          //  System.out.println("sold " + amount + " stocks at price " + price.get(i));
+                        } else if (rsi.get(i) < 30) { //&& price.get(i) < movAvg.get(i)
+                            double amount = (balance / price.get(i)) * 0.5;
+                            balance -= amount;
+                            stocks += amount;
+                           // System.out.println("bought " + amount + " stocks at price " + price.get(i));
+                        } else {
+                           // System.out.println("didnt do shit");
+                        }
+                    netWorth = Math.round(balance + (stocks * price.get(i)));
+                    funWorth.add(netWorth); 
+                }
+                return netWorth;
+            }
               
 
             //prints all arrays for testing
@@ -173,13 +196,14 @@ public class StockBot {
                 }
             }
 
+            //prints fidelity data
             public void printFidelityWorth(){
                 System.out.println("Fidelity Worth");
                 for(int i = 0; i < fidelityWorth.size(); i++){
                     System.out.println(fidelityWorth.get(i));
                 }
             }
-
+            //exports fidelity data
             public void exportFidelityData(){
                 try( FileWriter csvWriter = new FileWriter("FidelityNFLX.csv")){
                     csvWriter.append("Date,Net Worth" + "\n");
@@ -190,12 +214,24 @@ public class StockBot {
                     e.printStackTrace();
                 }
             }
-
+            //exports hodl data
             public void exportHodlData(){
                 try( FileWriter csvWriter = new FileWriter("HodlNFLX.csv")){
                     csvWriter.append("Date,Net Worth" + "\n");
                     for(int i = 0; i < date.size(); i++){
                         csvWriter.append(date.get(i) + "," + hodlWorth.get(i)+ "\n");
+                    }
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+
+            //exports hodl data
+            public void exportCustomAlgorithmData(){
+                try( FileWriter csvWriter = new FileWriter("CustomAlgorithmNFLX.csv")){
+                    csvWriter.append("Date,Net Worth" + "\n");
+                    for(int i = 0; i < date.size(); i++){
+                        csvWriter.append(date.get(i) + "," + funWorth.get(i)+ "\n");
                     }
                 } catch (Exception e){
                     e.printStackTrace();
