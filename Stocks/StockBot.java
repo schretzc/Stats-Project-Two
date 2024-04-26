@@ -240,8 +240,8 @@ public class StockBot {
                 
 
             public void run(){
-                 assignPrice("/Users/chris/Documents/Stockton/Spring 2024/Stats/Stats Project Two/Stocks/CSVs/NFLX.csv");
-                 assignRSI("/Users/chris/Documents/Stockton/Spring 2024/Stats/Stats Project Two/Stocks/CSVs/NFLXRSI.csv");
+                 assignPrice("/Users/chris/Documents/Stockton/Spring 2024/Stats/Stats Project Two/Stocks/CSVs/WBA/WBA.csv");
+                 assignRSI("/Users/chris/Documents/Stockton/Spring 2024/Stats/Stats Project Two/Stocks/CSVs/WBA/WBARSI.csv");
                 // System.out.println(fidelityAlgorithm());
                  //System.out.println(hodl());
                  //exportHodlData();
