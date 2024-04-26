@@ -166,7 +166,7 @@ public class StockBot {
                 double stocks= 0;
                 double netWorth = 0;
                 for (int i = 0; i < date.size(); i++) {
-                    if (rsi.get(i) > 70) { //price.get(i) > movAvg.get(i)
+                    if (rsi.get(i) > 80) { //price.get(i) > movAvg.get(i)
                             double sellAmount = stocks * 0.3;
                             if (sellAmount > stocks){
                                 sellAmount = stocks;
@@ -174,13 +174,11 @@ public class StockBot {
                             balance += sellAmount * price.get(i);
                             stocks -= sellAmount;
                           //  System.out.println("sold " + amount + " stocks at price " + price.get(i));
-                        } else if (rsi.get(i) < 30) { //&& price.get(i) < movAvg.get(i)
+                        } else if (rsi.get(i) < 20) { //&& price.get(i) < movAvg.get(i)
                             double amount = (balance / price.get(i)) * 0.5;
                             balance -= amount;
                             stocks += amount;
-                           // System.out.println("bought " + amount + " stocks at price " + price.get(i));
                         } else {
-                           // System.out.println("didnt do shit");
                         }
                     netWorth = Math.round(balance + (stocks * price.get(i)));
                     funWorth.add(netWorth); 
@@ -244,9 +242,11 @@ public class StockBot {
             public void run(){
                  assignPrice("/Users/chris/Documents/Stockton/Spring 2024/Stats/Stats Project Two/Stocks/CSVs/NFLX.csv");
                  assignRSI("/Users/chris/Documents/Stockton/Spring 2024/Stats/Stats Project Two/Stocks/CSVs/NFLXRSI.csv");
-                 System.out.println(fidelityAlgorithm());
-                 System.out.println(hodl());
-                 exportHodlData();
-                 exportFidelityData();
+                // System.out.println(fidelityAlgorithm());
+                 //System.out.println(hodl());
+                 //exportHodlData();
+                 //exportFidelityData();
+                 customAlgorithm();
+                 exportCustomAlgorithmData();
             }
 }
