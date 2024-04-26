@@ -203,7 +203,7 @@ public class StockBot {
             }
             //exports fidelity data
             public void exportFidelityData(){
-                try( FileWriter csvWriter = new FileWriter("FidelityNFLX.csv")){
+                try( FileWriter csvWriter = new FileWriter("FidelityWBA.csv")){
                     csvWriter.append("Date,Net Worth" + "\n");
                     for(int i = 0; i < date.size(); i++){
                         csvWriter.append(date.get(i) + "," + fidelityWorth.get(i)+ "\n");
@@ -214,7 +214,7 @@ public class StockBot {
             }
             //exports hodl data
             public void exportHodlData(){
-                try( FileWriter csvWriter = new FileWriter("HodlNFLX.csv")){
+                try( FileWriter csvWriter = new FileWriter("HodlWBA.csv")){
                     csvWriter.append("Date,Net Worth" + "\n");
                     for(int i = 0; i < date.size(); i++){
                         csvWriter.append(date.get(i) + "," + hodlWorth.get(i)+ "\n");
@@ -226,7 +226,7 @@ public class StockBot {
 
             //exports hodl data
             public void exportCustomAlgorithmData(){
-                try( FileWriter csvWriter = new FileWriter("CustomAlgorithmNFLX.csv")){
+                try( FileWriter csvWriter = new FileWriter("CustomAlgorithmWBA.csv")){
                     csvWriter.append("Date,Net Worth" + "\n");
                     for(int i = 0; i < date.size(); i++){
                         csvWriter.append(date.get(i) + "," + funWorth.get(i)+ "\n");
