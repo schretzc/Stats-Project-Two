@@ -246,6 +246,10 @@ public class StockBot {
                  //System.out.println(hodl());
                  //exportHodlData();
                  //exportFidelityData();
+                 fidelityAlgorithm();
+                 exportFidelityData();
+                 hodl();
+                 exportHodlData();
                  customAlgorithm();
                  exportCustomAlgorithmData();
             }
