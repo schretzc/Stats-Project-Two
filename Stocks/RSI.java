@@ -114,7 +114,7 @@ public class RSI{
 
 
             public void exportData(){
-                try( FileWriter csvWriter = new FileWriter("RSI.csv")){
+                try( FileWriter csvWriter = new FileWriter("WBARSI.csv")){
                     csvWriter.append("Date,RSI,Moving Average" + "\n");
                     for(int i = 0; i < date.size(); i++){
                         csvWriter.append(date.get(i) + "," + rsi.get(i) + "," + movAvg.get(i) + "\n");
@@ -124,7 +124,7 @@ public class RSI{
                 }
             }
     public void run(){
-        assignValue("/Users/chris/Documents/Stockton/Spring 2024/Stats/Stats Project Two/Stocks/CSVs/NFLX.csv");
+        assignValue("/Users/chris/Documents/Stockton/Spring 2024/Stats/Stats Project Two/Stocks/CSVs/WBA/WBA.csv");
         assignRSI(14);
         movingAverage(4);
         exportData();
