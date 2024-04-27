@@ -148,14 +148,11 @@ public class StockBot {
                             }
                             balance += sellAmount * price.get(i);
                             stocks -= sellAmount;
-                          //  System.out.println("sold " + amount + " stocks at price " + price.get(i));
                         } else if (rsi.get(i) < 30) { //&& price.get(i) < movAvg.get(i)
                             double amount = (balance / price.get(i)) * 0.5;
                             balance -= amount;
                             stocks += amount;
-                           // System.out.println("bought " + amount + " stocks at price " + price.get(i));
                         } else {
-                           // System.out.println("didnt do shit");
                         }
                     netWorth = Math.round(balance + (stocks * price.get(i)));
                     fidelityWorth.add(netWorth); 
@@ -180,7 +177,6 @@ public class StockBot {
                             }
                             balance += sellAmount * price.get(i);
                             stocks -= sellAmount;
-                          //  System.out.println("sold " + amount + " stocks at price " + price.get(i));
                         } else if (rsi.get(i) < 20) { //&& price.get(i) < movAvg.get(i)
                             double amount = (balance / price.get(i)) * 0.5;
                             balance -= amount;
