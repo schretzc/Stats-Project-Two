@@ -11,7 +11,10 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
-//https://stackoverflow.com/questions/12318488/adding-a-chartpanel-to-jpanel/12318835#12318835
+
+/**
+ * https://stackoverflow.com/questions/12318488/adding-a-chartpanel-to-jpanel/12318835#12318835
+ */
 public class JPlot {
     public static void main(String[] args) {
 
