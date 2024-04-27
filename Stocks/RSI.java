@@ -23,6 +23,10 @@ public class RSI{
             this.movAvg = new ArrayList<>();
         }
 
+        /**
+         *  This method reads a csv file and prints out the contents
+         * @param file desired file to read from
+         */
         public void assignValue(String file){
             BufferedReader reader = null;
             String line = "";
@@ -49,8 +53,10 @@ public class RSI{
             }
 
             /**
-             * calculates the RSA of a given period
-             * @param n period of RSI
+             * 
+             * @param window period of time
+             * @param index current index
+             * @return
              */
             public double calcRSI(int window, int index){ //common period = 14
                 double avgU;
@@ -93,6 +99,10 @@ public class RSI{
                     }
                 }
 
+                /**
+                 *  This method calculates the moving average of the RSI
+                 * @param windowValue value of number to left and right of current point
+                 */
                 public void movingAverage(int windowValue){
                     ArrayList<Double> temp = new ArrayList<>(rsi);
                     for(int i = 0; i < temp.size(); i++){ 
@@ -112,7 +122,9 @@ public class RSI{
                     
 
 
-
+            /**
+             * This method exports the data to a csv file
+             */
             public void exportData(){
                 try( FileWriter csvWriter = new FileWriter("WBARSI.csv")){
                     csvWriter.append("Date,RSI,Moving Average" + "\n");
@@ -123,6 +135,9 @@ public class RSI{
                     e.printStackTrace();
                 }
             }
+            /**
+             * This method runs the program
+             */
     public void run(){
         assignValue("/Users/chris/Documents/Stockton/Spring 2024/Stats/Stats Project Two/Stocks/CSVs/WBA/WBA.csv");
         assignRSI(14);

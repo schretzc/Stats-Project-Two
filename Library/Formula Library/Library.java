@@ -3,7 +3,9 @@ import java.util.Arrays;
 public class Library
 {
 
-
+    /**
+     * Library of methods for statistics in the second half of the semester
+     */
     public Library(){
 
     }

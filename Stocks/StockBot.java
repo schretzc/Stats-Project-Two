@@ -3,7 +3,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 
-
+/**
+ * this runs stock trading algorithms from given files. It uses data input as csv files.
+ */
 public class StockBot {
     ArrayList<Double> price;
     ArrayList<String> date;
@@ -13,6 +15,9 @@ public class StockBot {
     ArrayList<Double> fidelityWorth;
     ArrayList<Double> funWorth;
 
+    /**
+     * Constructor
+     */
     public StockBot() {
         this.price = new ArrayList<>();
         this.date = new ArrayList<>();
@@ -23,6 +28,10 @@ public class StockBot {
         this.funWorth = new ArrayList<>();
     }
 
+    /**
+     * This method reads a csv file and assigns contents to arraylists for price and date
+     * @param file desired file to read from
+     */
     public void assignPrice(String file){
         BufferedReader reader = null;
         String line = "";
@@ -49,6 +58,10 @@ public class StockBot {
             }
         }
 
+        /**
+         * This method reads a csv file and assigns contents to arraylists for rsi
+         * @param file desired file to read from
+         */
         public void assignRSI(String file){
             BufferedReader reader = null;
             String line = "";
@@ -75,18 +88,11 @@ public class StockBot {
                 }
             }
 
-            //hold for a year
-          // Hold for a year
-          ////sell if RSI > 70 and price > moving average
-            //buy if RSI < 30 and price < moving average
-            //updates balance, stocks, and returns net worth at the end while adding net worth to the array
-            //track each day and make a decision based on the RSI and moving average
-            //return balance at the end of the period
-            //sell if RSI > 70 and price > moving average
-            //buy if RSI < 30 and price < moving average
-            //hold if neither
-            //uses moving average and rsi to make decisions
-            //when buying, buy 70% when selling, sell 40%
+         
+         /**
+          * HODL buys on day one, holds for a year, and then turns into fidelity algorthim.
+          * @return
+          */ 
         public double hodl() {
             double balance = 10000;
             double stocks= 0;
@@ -126,13 +132,10 @@ public class StockBot {
             return netWorth;
         }
         
-            //track each day and make a decision based on the RSI and moving average
-            //return balance at the end of the period
-            //sell if RSI > 70 and price > moving average
-            //buy if RSI < 30 and price < moving average
-            //hold if neither
-            //uses moving average and rsi to make decisions
-            //when buying, buy 70% when selling, sell 40%
+            /**
+             * Fidelity algorithm that is less risky and a common approach
+             * @return returns the fidelity algorithm as a double
+             */
             public double fidelityAlgorithm() {
                 double balance = 10000;
                 double stocks= 0;
@@ -161,6 +164,10 @@ public class StockBot {
             }
 
 
+            /**
+             * CUSTOM algorithm that is more risky than the fidelity algorithm
+             * @return returns the custom algorithm as a double
+             */
             public double customAlgorithm() {
                 double balance = 10000;
                 double stocks= 0;
@@ -187,21 +194,27 @@ public class StockBot {
             }
               
 
-            //prints all arrays for testing
+            /**
+             * prints all values from testing
+             */
             public void printValues(){
                 for(int i = 0; i < date.size(); i++){
                     System.out.println(date.get(i) + " " + price.get(i) + " " + rsi.get(i) + " " + movAvg.get(i));
                 }
             }
 
-            //prints fidelity data
+            /**
+             * prints fidelity worth
+             */
             public void printFidelityWorth(){
                 System.out.println("Fidelity Worth");
                 for(int i = 0; i < fidelityWorth.size(); i++){
                     System.out.println(fidelityWorth.get(i));
                 }
             }
-            //exports fidelity data
+            /**
+             * exports fidelity data
+             */
             public void exportFidelityData(){
                 try( FileWriter csvWriter = new FileWriter("FidelityWBA.csv")){
                     csvWriter.append("Date,Net Worth" + "\n");
@@ -212,7 +225,9 @@ public class StockBot {
                     e.printStackTrace();
                 }
             }
-            //exports hodl data
+            /**
+             * exports hodl data
+             */
             public void exportHodlData(){
                 try( FileWriter csvWriter = new FileWriter("HodlWBA.csv")){
                     csvWriter.append("Date,Net Worth" + "\n");
@@ -224,7 +239,9 @@ public class StockBot {
                 }
             }
 
-            //exports hodl data
+            /**
+             * exports custom algorithm data
+             */
             public void exportCustomAlgorithmData(){
                 try( FileWriter csvWriter = new FileWriter("CustomAlgorithmWBA.csv")){
                     csvWriter.append("Date,Net Worth" + "\n");
